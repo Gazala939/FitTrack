@@ -1,0 +1,374 @@
+
+/* =====================================
+   FITTRACK - WORKOUT MANAGEMENT
+   Professional Dark Theme
+===================================== */
+
+:root {
+  --bg-main: #090e1a;
+  --bg-card: #111827;
+  --bg-input: #1e293b;
+  --bg-input-hover: #263449;
+
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --border-color: #263449;
+  --border-focus: #3b82f6;
+
+  --success-color: #22c55e;
+  --error-color: #f87171;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================================
+   MAIN PAGE
+===================================== */
+
+.workouts-page {
+  min-height: 100vh;
+  padding: 45px 25px;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  background: var(--bg-main);
+  color: var(--text-main);
+
+  font-family: Inter, Arial, sans-serif;
+}
+
+.workouts-page h1 {
+  color: var(--text-main);
+  font-size: 32px;
+  font-weight: 750;
+  text-align: center;
+  margin: 0 0 10px;
+  letter-spacing: -0.8px;
+}
+
+.workouts-page > p {
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 35px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   FORM AND LIST CARDS
+===================================== */
+
+.workout-form-card,
+.workout-list-card {
+  background: var(--bg-card);
+  padding: 30px;
+  margin-top: 25px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+
+  box-shadow: var(--shadow-md);
+  transition: border-color 0.2s ease;
+}
+
+.workout-form-card:hover,
+.workout-list-card:hover {
+  border-color: #35445c;
+}
+
+.workout-form-card h2,
+.workout-list-card h2 {
+  color: var(--text-main);
+  font-size: 21px;
+  font-weight: 650;
+
+  margin: 0 0 25px;
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* =====================================
+   WORKOUT FORM
+===================================== */
+
+.workout-form-card form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Input and dropdown fields */
+
+.workout-form-card input,
+.workout-form-card select {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+
+  padding: 0 15px;
+  box-sizing: border-box;
+
+  background: var(--bg-input);
+  color: var(--text-main);
+
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-family: inherit;
+
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.workout-form-card input::placeholder {
+  color: #8492a6;
+}
+
+/* Focus effect */
+
+.workout-form-card input:focus,
+.workout-form-card select:focus {
+  background: var(--bg-input-hover);
+  border-color: var(--border-focus);
+
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Calendar and dropdown appearance */
+
+.workout-form-card input[type="date"] {
+  color-scheme: dark;
+}
+
+.workout-form-card select {
+  cursor: pointer;
+}
+
+/* =====================================
+   ADD WORKOUT BUTTON
+===================================== */
+
+.workout-form-card button {
+  width: 100%;
+  min-height: 50px;
+
+  padding: 12px 20px;
+
+  background: var(--primary-color);
+  color: #ffffff;
+
+  border: none;
+  border-radius: 9px;
+
+  font-size: 15px;
+  font-weight: 650;
+  font-family: inherit;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.workout-form-card button:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+  transform: translateY(-2px);
+}
+
+.workout-form-card button:active {
+  transform: translateY(0);
+}
+
+/* =====================================
+   WORKOUT LIST
+===================================== */
+
+.workout-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Individual workout card */
+
+.workout-item {
+  padding: 22px;
+
+  background: #0c1423;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+
+  transition: all 0.25s ease;
+}
+
+.workout-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+/* Workout title */
+
+.workout-item h3 {
+  color: var(--text-main);
+  font-size: 18px;
+  font-weight: 650;
+
+  margin: 0 0 18px;
+  padding-bottom: 13px;
+
+  border-bottom: 1px solid var(--border-color);
+}
+
+.workout-item h3::before {
+  content: "";
+  display: inline-block;
+
+  width: 8px;
+  height: 8px;
+
+  margin-right: 11px;
+  border-radius: 50%;
+
+  background: var(--primary-color);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+/* Workout details */
+
+.workout-item p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+
+  margin: 12px 0;
+}
+
+.workout-item p:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   ERROR MESSAGE
+===================================== */
+
+.workout-error {
+  grid-column: 1 / -1;
+
+  padding: 13px 16px;
+
+  background: rgba(127, 29, 29, 0.2);
+  color: var(--error-color);
+
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 9px;
+
+  font-size: 14px;
+}
+
+/* =====================================
+   EMPTY AND LOADING MESSAGES
+===================================== */
+
+.workout-list-card > p {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 14px;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 700px) {
+  .workouts-page {
+    padding: 30px 16px;
+  }
+
+  .workouts-page h1 {
+    font-size: 26px;
+  }
+
+  .workout-form-card form,
+  .workout-list {
+    grid-template-columns: 1fr;
+  }
+
+  .workout-form-card,
+  .workout-list-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .workouts-page {
+    padding: 22px 12px;
+  }
+
+  .workout-form-card,
+  .workout-list-card {
+    padding: 17px;
+  }
+
+  .workout-item {
+    padding: 17px;
+  }
+}
+
+/* Workout action buttons */
+
+.workout-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.workout-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-button {
+  background: #2563eb;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #1d4ed8;
+}
+
+.delete-button {
+  background: #dc2626;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
+
+.workout-form-card .cancel-button {
+  background: #475569;
+}
+
+.workout-form-card .cancel-button:hover {
+  background: #334155;
+}

@@ -1,0 +1,137 @@
+
+/* Daily Progress - Professional Dark Theme */
+
+.progress-page {
+  min-height: 100vh;
+  padding: 40px 25px;
+  max-width: 1100px;
+  margin: auto;
+  box-sizing: border-box;
+  background: #090e1a;
+  color: #f8fafc;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.progress-page h1 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.progress-subtitle {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 35px;
+}
+
+.progress-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.progress-card {
+  background: #111827;
+  padding: 28px;
+  border: 1px solid #263449;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.progress-card span {
+  color: #94a3b8;
+  font-size: 15px;
+}
+
+.progress-card h2 {
+  color: #3b82f6;
+  font-size: 34px;
+  margin: 15px 0 8px;
+}
+
+.progress-card p {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.progress-history-card {
+  margin-top: 28px;
+  padding: 28px;
+  background: #111827;
+  border: 1px solid #263449;
+  border-radius: 14px;
+}
+
+.progress-history-card h2 {
+  font-size: 21px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #263449;
+}
+
+.progress-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px;
+  background: #0c1423;
+  border: 1px solid #263449;
+  border-radius: 10px;
+}
+
+.progress-history-item h3 {
+  font-size: 15px;
+  margin: 0 0 7px;
+}
+
+.progress-history-item p {
+  color: #94a3b8;
+  font-size: 13px;
+  margin: 0;
+}
+
+.progress-history-item strong {
+  color: #22c55e;
+  font-size: 15px;
+}
+
+.progress-refresh-button {
+  display: block;
+  margin: 25px auto;
+  padding: 12px 25px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.progress-refresh-button:hover {
+  background: #1d4ed8;
+}
+
+.progress-error {
+  color: #f87171;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .progress-page {
+    padding: 25px 15px;
+  }
+
+  .progress-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-history-card {
+    padding: 18px;
+  }
+}
