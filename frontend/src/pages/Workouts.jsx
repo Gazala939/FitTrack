@@ -1,9 +1,13 @@
 
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../styles/Workouts.css";
 
 export default function Workouts() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -36,6 +40,36 @@ export default function Workouts() {
   useEffect(() => {
     fetchWorkouts();
   }, []);
+
+  // Receive exercise from Exercise Library
+  useEffect(() => {
+    const exercise = location.state?.exercise;
+
+    if (!exercise) return;
+
+    setEditingId(null);
+
+    setForm({
+      workout_name: exercise.name,
+      category: exercise.category,
+      duration: exercise.duration,
+      calories_burned: "",
+      workout_date: new Date().toISOString().split("T")[0],
+    });
+
+    setError("");
+
+    // Clear navigation state so the form is not prefilled again on refresh
+    navigate(location.pathname, {
+      replace: true,
+      state: null,
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [location.state, location.pathname, navigate]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -70,12 +104,18 @@ export default function Workouts() {
       fetchWorkouts();
 
     } catch (err) {
+      console.error("Save workout error:", err.response?.data || err);
+
       const detail = err.response?.data?.detail;
 
       setError(
-        typeof detail === "string"
+        Array.isArray(detail)
+          ? detail.map((item) =>
+              `${item.loc?.join(".")}: ${item.msg}`
+            ).join(", ")
+          : typeof detail === "string"
           ? detail
-          : "Unable to save workout."
+          : JSON.stringify(err.response?.data || err.message)
       );
     }
   };
@@ -159,8 +199,10 @@ export default function Workouts() {
             onChange={handleChange}
           >
             <option value="Cardio">Cardio</option>
-            <option value="Strength">Strength</option>
+            <option value="Strength Training">Strength Training</option>
             <option value="Yoga">Yoga</option>
+            <option value="Flexibility">Flexibility</option>
+            <option value="HIIT">HIIT</option>
           </select>
 
           <input

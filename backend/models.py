@@ -8,7 +8,8 @@ from sqlalchemy import (
     DateTime,
     Boolean,
     ForeignKey,
-    UniqueConstraint
+    UniqueConstraint,
+    Text
 )
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -30,6 +31,12 @@ class User(Base):
     progress = relationship("Progress", back_populates="user")
     goals = relationship("Goal", back_populates="user")
     notifications = relationship("Notification", back_populates="user")
+
+    # Phase 2 - Module 7
+    workout_plans = relationship(
+        "WorkoutPlan",
+        back_populates="user"
+    )
 
 
 # 2. WORKOUTS TABLE
@@ -92,3 +99,147 @@ class Notification(Base):
     created_at = Column(DateTime, default=datetime.now)
 
     user = relationship("User", back_populates="notifications")
+
+
+# 6. WORKOUT PLANS TABLE
+# Phase 2 - Module 7 and Module 8
+class WorkoutPlan(Base):
+    __tablename__ = "workout_plans"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    title = Column(String(150), nullable=False)
+    description = Column(Text, nullable=True)
+
+    # Module 8 - Workout Category
+    category = Column(
+        String(50),
+        nullable=False,
+        default="Cardio"
+    )
+
+    scheduled_date = Column(Date, nullable=False)
+    created_at = Column(DateTime, default=datetime.now)
+
+    user = relationship("User", back_populates="workout_plans")
+    
+    
+
+# 7. EXERCISES TABLE
+# Phase 2 - Module 8: Exercise Library
+
+class Exercise(Base):
+    __tablename__ = "exercises"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    name = Column(
+        String(150),
+        nullable=False
+    )
+
+    category = Column(
+        String(50),
+        nullable=False
+    )
+
+    description = Column(
+        Text,
+        nullable=True
+    )
+
+    duration = Column(
+        Integer,
+        nullable=False
+    )
+
+# 8. STREAK TRACKING TABLE
+# Module 10 - Streak Tracking System
+
+class Streak(Base):
+    __tablename__ = "streaks"
+
+    __table_args__ = (
+        UniqueConstraint("user_id", name="unique_user_streak"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    current_streak = Column(Integer, default=0, nullable=False)
+
+    longest_streak = Column(Integer, default=0, nullable=False)
+
+    last_workout_date = Column(Date, nullable=True)
+    
+# 9. BADGES TABLE
+# Module 11 - Achievement Badges
+
+class Badge(Base):
+    __tablename__ = "badges"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    name = Column(
+        String(100),
+        unique=True,
+        nullable=False
+    )
+
+    description = Column(
+        String(500),
+        nullable=False
+    )
+
+    icon = Column(
+        String(100),
+        nullable=False
+    )
+
+
+# 10. USER BADGES TABLE
+# Stores badges earned by individual users
+
+class UserBadge(Base):
+    __tablename__ = "user_badges"
+
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id",
+            "badge_id",
+            name="unique_user_badge"
+        ),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=False
+    )
+
+    badge_id = Column(
+        Integer,
+        ForeignKey("badges.id"),
+        nullable=False
+    )
+
+    earned_at = Column(
+        DateTime,
+        default=datetime.now,
+        nullable=False
+    )
+
+    badge = relationship("Badge")

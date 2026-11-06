@@ -1,0 +1,185 @@
+.calendar-page {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f4f7fb;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.calendar-header h1 {
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.calendar-header p {
+  color: #64748b;
+}
+
+.calendar-back {
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+}
+
+.calendar-section {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.calendar-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.calendar-month-header h2 {
+  color: #1e293b;
+}
+
+.calendar-month-header button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-weight: bold;
+  padding: 12px 4px;
+  color: #475569;
+  background: #eff6ff;
+  border-radius: 5px;
+}
+
+.calendar-day {
+  min-height: 110px;
+  padding: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.empty-day {
+  background: #f8fafc;
+}
+
+.calendar-date {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+.calendar-day.today {
+  border: 2px solid #2563eb;
+  background: #eff6ff;
+}
+
+.calendar-workout {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 6px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  color: #64748b;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.calendar-error {
+  color: #dc2626;
+  margin-bottom: 15px;
+}
+
+.calendar-footer {
+  margin-top: 20px;
+}
+
+.calendar-footer a {
+  display: inline-block;
+  background: #2563eb;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .calendar-page {
+    padding: 15px;
+  }
+
+  .calendar-section {
+    padding: 10px;
+  }
+
+  .calendar-day {
+    min-height: 85px;
+    padding: 4px;
+  }
+
+  .calendar-workout {
+    font-size: 10px;
+    padding: 4px;
+  }
+
+  .calendar-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+
+.calendar-workout {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.calendar-workout-title {
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.calendar-workout-category {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background-color: #dbeafe;
+  color: #1d4ed8;
+  font-size: 10px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}

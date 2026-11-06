@@ -21,6 +21,19 @@ import Reports from "./pages/Reports";
 
 import Notifications from "./pages/Notifications";
 
+import WorkoutPlanner from "./pages/WorkoutPlanner";
+
+import WorkoutCalendar from "./pages/WorkoutCalendar";
+
+import ExerciseLibrary from "./pages/ExerciseLibrary";
+
+import ProgressComparison from "./pages/ProgressComparison";
+
+import WorkoutRecommendations from "./pages/WorkoutRecommendations";
+
+import StreakTracking from "./pages/StreakTracking";
+import Achievements from "./pages/Achievements";
+
 function App() {
   return (
     <AuthProvider>
@@ -85,6 +98,69 @@ function App() {
             element={
               <ProtectedRoute>
                 <Notifications />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/workout-calendar"
+            element={
+              <ProtectedRoute>
+                <WorkoutCalendar />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/workout-planner"
+            element={
+              <ProtectedRoute>
+                <WorkoutPlanner />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/exercise-library"
+            element={
+              <ProtectedRoute>
+                <ExerciseLibrary />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/recommendations"
+            element={
+              <ProtectedRoute>
+                <WorkoutRecommendations />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/streaks"
+            element={
+              <ProtectedRoute>
+                <StreakTracking />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/achievements"
+            element={
+              <ProtectedRoute>
+                <Achievements />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/progress-comparison"
+            element={
+              <ProtectedRoute>
+                <ProgressComparison />
               </ProtectedRoute>
             }
           />

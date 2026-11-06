@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
@@ -6,6 +5,7 @@ from database import get_db
 from models import Goal, User
 from schemas import GoalCreate, GoalUpdate
 from dependencies import get_current_user
+from badge_utils import award_badge
 
 
 router = APIRouter(prefix="/goals", tags=["Goal Setting"])
@@ -33,6 +33,22 @@ def format_goal(goal: Goal):
     }
 
 
+# Check whether a goal is completed
+def check_goal_achievement(db: Session, goal: Goal):
+
+    if (
+        goal.target_value > 0
+        and goal.current_value >= goal.target_value
+    ):
+        return award_badge(
+            db,
+            goal.user_id,
+            "Goal Achiever"
+        )
+
+    return False
+
+
 # 1. Create a goal
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def create_goal(
@@ -49,6 +65,10 @@ def create_goal(
     )
 
     db.add(new_goal)
+    db.flush()
+
+    check_goal_achievement(db, new_goal)
+
     db.commit()
     db.refresh(new_goal)
 
@@ -126,6 +146,8 @@ def update_goal(
 
     for field, value in update_data.items():
         setattr(goal, field, value)
+
+    check_goal_achievement(db, goal)
 
     db.commit()
     db.refresh(goal)
